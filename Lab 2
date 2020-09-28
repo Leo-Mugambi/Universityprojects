@@ -1,0 +1,204 @@
+/*Question 1 (10 Marks)
+Consider 𝒊𝒏𝒕 𝒎𝒚_𝒂𝒓𝒓𝒂𝒚[] = {𝟏𝟎,𝟑𝟎,𝟕𝟎,𝟖𝟎,𝟒𝟎,𝟓𝟎,𝟔𝟎,𝟐𝟎,𝟏𝟎𝟎} and 𝒊𝒏𝒕 𝒕𝒂𝒓𝒈𝒆𝒕 = 𝟔𝟑
+Write a program that will give any two numbers from the array that when added together will either give us the target value or a value closest to the target.*/
+
+#include <iostream>
+#include <string>
+#include<time.h>
+#include<stdlib.h>
+
+int num = 0, value = 0;
+int my_array[]{ 10, 30, 70, 80, 40, 50, 60, 20, 100 };
+using namespace std;
+
+void random() {
+	srand(time(NULL));
+	num = rand() % 2 + 1;
+}
+
+
+
+
+int main() {
+	do {
+		cout << "___________________________________Set provided (10, 30, 70, 80, 40, 50, 60, 20, 100).__________________________________\n";
+		cout << "This program adds any two numbers from the set to either get the target value 63 or a value closest to 63\n\n";
+
+		random();
+
+
+		switch (num) {
+		case 1:
+			value = my_array[0] + my_array[5];
+			cout << "The value obtained from 10 + 50 is: " << value;
+			cout << "\n\nThe deviation from the target value is -3";
+			break;		
+		case 2:
+			value = my_array[4] + my_array[7];
+			cout << "The value obtained from 40 + 20 is: " << value;
+			cout << "\n\nThe deviation from the target value is -3";
+			break;
+		default:
+			cout << "Press Enter";
+		}
+
+		system("pause>nul");
+		system("cls");
+	} while (true);
+
+	return 0;
+
+}
+
+/*Question 2 (10 Marks)
+• Populate your arrays from the console.
+• Output Presentation is a key winning point.
+Case Study
+Class 5A in Sahara Tech Academy has a total of 5 Students. 2 of the students are male while the rest of the students are female. In another stream 5B, in the same school, there are 6 students of which 4 are female and 2 males.
+Required.
+Women in Technology International (WITI), an international organization to empower women in technology has organized a symposium for all the female students in class 5 A and B. Write a program that registers all the students in both streams in different arrays i.e. 5A and 5B. Traverse through both registers and come up with a full list i.e. 5C that has all the names of the students in 5A and 5B that qualified for the symposium.
+Marking Points
+1. Populating and displaying class 5A (2.5 Marks)
+2. Populating and displaying class 5B (2.5 Marks)
+3. Displaying class 5C (5 Marks)*/
+
+#include <string>
+#include <array>
+#include <iostream>
+#include <iomanip>
+using namespace std;
+int counter = 0;
+int checker = 0;
+string Class1A[5][2]; //students who qualifies from Class1 (5A)
+string Class2A[6][2]; //students who qualifies from Class2 (5B)
+
+
+void classC(){
+	for (int i = 0; i < 3; i++)
+	{
+		cout << "\t\tName: " << Class1A[i][0] << "\t\tGender: " << Class1A[i][1] << endl;
+	}
+	for (int i = 0; i < 4; i++)
+	{
+		cout << "\t\tName: " << Class2A[i][0] << "\t\tGender: " << Class2A[i][1] << endl;
+	}
+}
+
+
+int main()
+{
+	string Class1[5][2];
+	string Class2[6][2];
+	string name;
+	do {
+
+		cout << "Dear Administrator,\n Please enter your name ";
+		getline(cin, name);
+		cout << "\nAdministrator: " << name;
+		cout << "\nWelcome to Sahara Tech Academy\n";
+
+
+		cout << "Enter the data for Class 5A\n\n";
+		for (int i = 0; i < 5; i++)
+		{
+			cout << "Enter The name and the gender (F or M ONLY) of the student \n";
+			for (int j = 0; j < 2; j++)
+			{
+				cout << "Name: ";
+				getline(cin, Class1[i][j]);
+				j += 1;
+				cout << "Gender: ";
+				getline(cin, Class1[i][j]);
+				string gender = Class1[i][j];
+				int x = counter;
+
+				if (gender == "F" || gender == "f" || gender == "Female" || gender == "FEMALE" || gender == "female")
+				{
+
+					cout << " \t\t" << Class1[i][j - 1] << " qualifies for the WITI selection \n";
+					Class1A[x][0] = Class1[i][j - 1];
+					Class1A[x][1] = Class1[i][j];
+					counter++;
+				}
+
+			}
+		}
+
+		cout << "Press 'Enter' to continue";
+		system("pause > null");
+		system("cls");
+
+
+
+		cout << "\n**********************************************************************************************";
+		cout << "\n\t\t\tCLASS 5A\n";
+		for (int i = 0; i < 5; i++)
+		{
+			cout << "\t\tName: " << Class1[i][0] << "\t\tGender: " << Class1[i][1] << endl;
+		}
+		cout << "*************************************************************************************************\n";
+
+		cout << "Press 'Enter' to continue";
+		system("pause > null");
+		system("cls");
+
+
+		cout << "Enter the data for Class 5B\n\n";
+		for (int i = 0; i < 6; i++)
+		{
+			cout << "Enter The name and the gender (F or M ONLY) of the students \n";
+			for (int j = 0; j < 2; j++)
+			{
+				cout << "Name: ";
+				getline(cin, Class2[i][j]);
+				j += 1;
+				cout << "Gender: ";
+				getline(cin, Class2[i][j]);
+				string gender = Class2[i][j];
+				int x = checker;
+
+				if (gender == "F" || gender == "f" || gender == "Female" || gender == "FEMALE" || gender == "female")
+				{
+					cout << " \t\t" << Class2[i][j - 1] << " qualifies for the WITI selection \n";
+					Class2A[x][0] = Class2[i][j - 1];
+					Class2A[x][1] = Class2[i][j];
+					checker++;
+				}
+			}
+		}
+
+
+		cout << "Press 'Enter' to continue";
+		system("pause > null");
+		system("cls");
+
+
+		cout << "\n**************************************************************************************************";
+		cout << "\n\t\t\tCLASS 5B\n";
+		for (int i = 0; i < 6; i++)
+		{
+			cout << "\t\tName: " << Class2[i][0] << "\t\tGender: " << Class2[i][1] << endl;
+		}
+		cout << "**************************************************************************************************\n";
+
+		cout << "Press 'Enter' to continue";
+		system("pause > null");
+		system("cls");
+
+
+		cout << "****************************************************************************************************\n";
+		cout << "Students qualified for the symposium by Women In Technology International" << endl;
+
+		cout << "****************************************************************************************************";
+		cout << "\n\t\t\tCLASS 5C\n";
+		classC();
+		cout << "****************************************************************************************************\n";
+
+		cout << "Press 'Enter' to continue";
+		system("pause > null");
+		system("cls");
+	}while (true);
+
+
+	return 0;
+}
