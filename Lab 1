@@ -1,0 +1,163 @@
+/*Question 1 (10 Marks)
+Generate any one random number between 1 and 500 using a function, then pass that number to another function to check if the number is a prime number or not.
+Implement a Boolean somewhere in your solution.*/
+
+#include <iostream>
+#include <string>
+#include <time.h>
+#include <stdlib.h>
+
+
+using namespace std;
+
+bool ifprime(int a) 
+{
+	
+	
+	if (a == 0 || a == 1) {
+		return false;
+	}
+	else if(a>1)
+	{
+		int i;
+		for (i = 2; i <= a / 2; ++i) {
+			if (a % i == 0) {
+				return false;
+				break;
+			}
+		}
+	}
+	else {
+		return true;
+	}
+		
+}
+
+int main() 
+{
+	do {
+		int num;
+		cout << "**********************************************Random number generator***************************************************";
+		cout << "********************************************Checks if its a Prime Number************************************************";
+
+
+		srand(time(NULL));
+		num = rand() % 500 + 1;
+		cout << "\nThe random number generated is: " << num;
+
+
+
+
+
+		if (ifprime(num)) {
+			cout << "\nThis is a prime number";
+		}
+		else {
+			cout << "\n This is NOT a prime number";
+		}
+
+		system("pause>nul");
+		system("cls");
+	} while (true);
+
+	return 0;
+}
+
+
+/*Question 2 (10 Marks)
+Temperature has different scales and magnitude. The magnitude varies from time to time based on the location and time. The commonly used scales for temperature measurements are degrees Celsius (℃) and degrees Fahrenheit (℉). In the current world, some countries use degrees Celsius (℃) while some uses degrees Fahrenheit (℉). For better understanding, someone may therefore need to convert any of the magnitudes.
+Required:
+1. Using switch cases and a do while loop, discuss and write a program that converts temperature from degrees Fahrenheit to degrees Celsius and vice versa.
+a. The do while loop should help you loop the program in case the choice is not to terminate the console.
+Additional Information for Validation of the Code
+1. By international agreement, absolute zero is defined as precisely; 0 K on the Kelvin scale, which is a thermodynamic (absolute) temperature scale; and –273.15 degrees Celsius on the Celsius scale.
+2. The while loop should help in preventing the console from exiting the desktop, do not use 𝑚𝑎𝑖𝑛(𝑎𝑟𝑔𝑠)𝑜𝑟 _𝑡𝑚𝑎𝑖𝑛(𝑎𝑟𝑔𝑠) as this may lead to stack overflow.*/
+
+#include <iostream>
+#include <string>
+#include<cmath>
+
+using namespace std;
+
+void checkinput() {       //this function ensures value entered is strictly a numerical value
+	while (cin.fail()) {
+		cin.clear();
+		cin.ignore(123, '\n');
+	}
+}
+
+double tempValidation(double temperature, int unit) {     //this function ensures that real values of temperature are entered
+	while (temperature < -273.15 && unit == 1) {
+		cout << "Enter a possible value for temperature in degrees celsius that is above -273.15: ";
+	    cin >> temperature;
+		return temperature;
+	}
+
+	while (temperature < -459.67 && unit == 2) {           //this function ensures that real values of temperature are entered as well
+		cout << "Enter a possible value for temperature in degrees fahrenheit that is above -459.67: ";
+		cin >> temperature;
+		return temperature;
+	}
+}
+
+
+int unitValidation(int unit) {
+	while (unit != 1 && unit != 2) {                     //this function ensure only 1 or 2 are entered
+		cout << "Enter \"1\" if the unit of measurement in degrees celsius\n";
+		cout << "Enter \"2\" if the unit of measurement is degrees fahrenheit\n";
+		cin >> unit;
+		checkinput();
+		return unit;
+	}
+}
+
+
+int main() {
+	double temperature = 0;
+	int unit;
+	do {
+		cout << "********************************************Temperature Conversion Program**********************************************\n";
+		cout << "Enter \"1\" if the unit of measurment in degrees celsius\n";
+		cout << "Enter \"2\" if the unit of measurment is degrees fahrenheit\n";
+		cin >> unit;
+		checkinput();
+		while (unit != 1 && unit != 2) {
+			unit = unitValidation(unit);
+		}
+
+
+		cout << "Enter the temperature: ";
+		cin >> temperature;
+		
+
+		while ((temperature < -273.15 && unit == 1) || (temperature < -459.67 && unit == 2)) {
+			temperature = tempValidation(temperature, unit);
+		}
+		
+		
+			switch (unit) {
+			case 1:
+				temperature = (temperature * 9.0 / 5.0) + 32;
+				cout << "The temperature in degrees fahrenheit is: " << temperature << endl;
+				break;
+			case 2:
+				temperature = (temperature - 32) * 5.0 / 9.0;
+				cout << "The temperature in degrees celsius is: " << temperature << endl;
+				break;
+			default:
+				cout << "Input value error";
+				break;
+			
+		}
+	
+	
+		cout << "\nPress 'Enter' to continue";
+		system("pause>nul");
+		system("cls");
+
+
+	} while (true);
+
+
+	return 0;
+}
